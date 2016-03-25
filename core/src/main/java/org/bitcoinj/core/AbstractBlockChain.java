@@ -954,7 +954,7 @@ public abstract class AbstractBlockChain {
         Block prev = storedPrev.getHeader();
 
         // Is this supposed to be a difficulty transition point?
-        if ((storedPrev.getHeight() + 1) % params.getInterval() != 0) {
+        if ((storedPrev.getHeight() + 1) % CoinDefinition.INTERVAL != 0) {
 
             // TODO: Refactor this hack after 0.5 is released and we stop supporting deserialization compatibility.
             // This should be a method of the NetworkParameters, which should in turn be using singletons and a subclass
