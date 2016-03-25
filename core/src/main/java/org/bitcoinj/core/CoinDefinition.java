@@ -153,18 +153,7 @@ public class CoinDefinition {
     public static void initCheckpoints(Map<Integer, Sha256Hash> checkpoints)
     {
         checkpoints.put(      0, Sha256Hash.wrap("0000012e1b8843ac9ce8c18603658eaf8895f99d3f5e7e1b7b1686f35e3c087a"));
-        checkpoints.put(  10000, Sha256Hash.wrap("0000000006c1a1573ca82ad24789c10a36535cf085f201122f1d112a88841271"));
-        checkpoints.put(  15790, Sha256Hash.wrap("000000004151f93a4012545309d4bbcac5f2977dea643a178c4bec1310e6c086"));
-        checkpoints.put(  21190, Sha256Hash.wrap("000000002a798fd88d0ce270cad1c217aceea236b573c68cfd02b086f5745921"));
-        checkpoints.put(  26000, Sha256Hash.wrap("00000002bace42e673000616ed8dbf16a49e3a7aec6bf59774fed081f6deac5f"));
-        checkpoints.put(  29999, Sha256Hash.wrap("00000000ede644fcbdf8f8ce8c53bb15de5dfd5c32384c751fa4ef409992aa07"));
-        checkpoints.put(  36222, Sha256Hash.wrap("0000000047c4338861a6b191570f07a23bd30c75c03a81ac5e5978053d946408"));
-        checkpoints.put(  40599, Sha256Hash.wrap("00000000c2596d6bd49b08ab9d233cd7de97a01a7cde19d0e1a136a1f3904f3c"));
-        checkpoints.put(  45512, Sha256Hash.wrap("00000000e2448d27f6360461739bcd25bf41d3767fc7c0e8c5e53a2db90eaf06"));
-        checkpoints.put(  49478, Sha256Hash.wrap("00000000dbb3d6386ed45e335316a4f018e451bf60b12fdebbef680969a90acb"));
-        checkpoints.put(  74910, Sha256Hash.wrap("000000002409374bcab8006f171b8c3eb4485220d94ae555b041ee24eb4d8434"));
-        checkpoints.put(  84579, Sha256Hash.wrap("00000000372eebd8b26d135798ac04549dc32fdfb584710ed9edf2dcb1be6941"));
-        checkpoints.put( 140602, Sha256Hash.wrap("0000000000b86fa0891a7241c71a0969439896b61abaf07e856eb0f49115b741"));
+        
     }
 
     //
