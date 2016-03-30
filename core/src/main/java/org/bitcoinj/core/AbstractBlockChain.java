@@ -964,22 +964,25 @@ public abstract class AbstractBlockChain {
                 return;
             }
 
+            /*
             // No ... so check the difficulty didn't actually change.
             if (nextBlock.getDifficultyTarget() != prev.getDifficultyTarget())
                 throw new VerificationException("Unexpected change in difficulty at height " + storedPrev.getHeight() +
                         ": " + Long.toHexString(nextBlock.getDifficultyTarget()) + " vs " +
                         Long.toHexString(prev.getDifficultyTarget()));
+            */
+
             return;
         }
 
         // We need to find a block far back in the chain. It's OK that this is expensive because it only occurs every
         // two weeks after the initial block chain download.
-        StoredBlock cursor = blockStore.get(prev.getHash());
 
         int blockstogoback = params.getInterval() - 1;
         if(storedPrev.getHeight() + 1 != params.getInterval())
             blockstogoback = params.getInterval();
 
+        StoredBlock cursor = blockStore.get(prev.getHash());
         for (int i = 0; i < blockstogoback; i++) {
             if (cursor == null) {
                 // This should never happen. If it does, it means we are following an incorrect or busted chain.
