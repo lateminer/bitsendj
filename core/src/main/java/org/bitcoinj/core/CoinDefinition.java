@@ -25,7 +25,7 @@ public class CoinDefinition {
     }
     public static final CoinPrecision coinPrecision = CoinPrecision.Coins;
 	
-    public static final String UNSPENT_API_URL = "https://chainz.cryptoid.info/uno/api.dws?q=unspent";
+    public static final String UNSPENT_API_URL = "https://chainz.cryptoid.info/bsd/api.dws?q=unspent";
     public enum UnspentAPIType {
         BitEasy,
         Blockr,
@@ -141,7 +141,7 @@ public class CoinDefinition {
 
     public static BigInteger proofOfWorkLimit = Utils.decodeCompactBits(0x1e0fffffL);
 
-    public static final String SATOSHI_KEY = "";
+    public static final String SATOSHI_KEY = "048240a8748a80a286b270ba126705ced4f2ce5a7847b3610ea3c06513150dade2a8512ed5ea86320824683fc0818f0ac019214973e677acd1244f6d0571fc5103";
 
     /** The string returned by getId() for the main, production network where people trade things. */
     public static final String ID_MAINNET = "org.bitsend.production";
