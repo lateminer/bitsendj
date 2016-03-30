@@ -412,7 +412,11 @@ public abstract class AbstractBlockChain {
                 checkState(lock.isHeldByCurrentThread());
                 // It connects to somewhere on the chain. Not necessarily the top of the best known chain.
                 //params.checkDifficultyTransitions(storedPrev, block, blockStore);
-                checkDifficultyTransitions(storedPrev, block);
+                
+                // BitSend: skip difficulty checks before block 139975
+                if (storedPrev.getHeight() + 1 >= 139975) {
+                    checkDifficultyTransitions(storedPrev, block);
+                }
                 connectBlock(block, storedPrev, shouldVerifyTransactions(), filteredTxHashList, filteredTxn);
             }
 
@@ -838,19 +842,6 @@ public abstract class AbstractBlockChain {
     private void checkDifficultyTransitions(StoredBlock storedPrev, Block nextBlock) throws BlockStoreException, VerificationException {
         checkState(lock.isHeldByCurrentThread());
 
-    /*
-    enum DiffMode {
-        DIFF_DEFAULT = 0, // Default to invalid 0
-        DIFF_BTC     = 1, // Retarget every x blocks (Bitcoin style)
-        DIFF_KGW     = 2,
-        DIFF_KGW2    = 3,// Retarget using Kimoto Gravity Well
-        DIFF_DGW     = 4,
-        DIFF_DELTA   = 5,
-        DIFF_KGW3    = 6,
-        DIFF_NULL    = 0,// Retarget using Dark Gravity Wave v3
-    };
-    */
-
         int DiffMode = 1;
         if (params.getId().equals(NetworkParameters.ID_TESTNET)) {
             if (storedPrev.getHeight() + 1 >= 500) { DiffMode = 3; }
@@ -875,9 +866,7 @@ public abstract class AbstractBlockChain {
         else if (DiffMode == 5) { KimotoGravityWell3(storedPrev, nextBlock); return; }
         else if (DiffMode == 6) { KimotoGravityWell3(storedPrev, nextBlock); return; }
         
-		DarkGravityWave3(storedPrev, nextBlock);
-		
-		return;
+        DarkGravityWave3(storedPrev, nextBlock); return;
 
     }
 
