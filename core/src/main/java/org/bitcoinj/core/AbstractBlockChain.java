@@ -412,7 +412,7 @@ public abstract class AbstractBlockChain {
                 checkState(lock.isHeldByCurrentThread());
                 // It connects to somewhere on the chain. Not necessarily the top of the best known chain.
                 //params.checkDifficultyTransitions(storedPrev, block, blockStore);
-                checkDifficultyTransitions(storedPrev, block);
+               // checkDifficultyTransitions(storedPrev, block);
                 connectBlock(block, storedPrev, shouldVerifyTransactions(), filteredTxHashList, filteredTxn);
             }
 
