@@ -1134,6 +1134,10 @@ public abstract class AbstractBlockChain {
                 newDifficulty = newDifficulty.multiply(BigInteger.valueOf(nLongTimebnNew));
             }
         }
+        if (newDifficulty.compareTo(params.getMaxTarget()) > 0) {
+            log.info("Difficulty hit proof of work limit: {}", newDifficulty.toString(16));
+            newDifficulty = params.getMaxTarget();
+        }
 
         verifyDifficulty(newDifficulty, storedPrev, nextBlock);
 
