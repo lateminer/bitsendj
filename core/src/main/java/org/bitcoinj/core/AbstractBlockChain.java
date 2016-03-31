@@ -1165,6 +1165,8 @@ public abstract class AbstractBlockChain {
             log.info("Difficulty hit proof of work limit: {}", calcDiff.toString(16));
             calcDiff = params.getMaxTarget();
         }
+
+        /*
         int accuracyBytes = (int) (nextBlock.getDifficultyTarget() >>> 24) - 3;
         BigInteger receivedDifficulty = nextBlock.getDifficultyTargetAsInteger();
 
@@ -1183,6 +1185,7 @@ public abstract class AbstractBlockChain {
                 throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
                         receivedDifficulty.toString(16) + " vs " + calcDiff.toString(16));
         }
+        */
     }
 
     private void checkTestnetDifficulty(StoredBlock storedPrev, Block prev, Block next) throws VerificationException, BlockStoreException {
