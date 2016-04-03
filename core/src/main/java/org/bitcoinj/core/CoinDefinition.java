@@ -34,10 +34,10 @@ public class CoinDefinition {
     };
     public static final UnspentAPIType UnspentAPI = UnspentAPIType.Cryptoid;
 	
-    public static final String BLOCKEXPLORER_BASE_URL_PROD = "https://www.blockexperts.com/bsd/";
-    public static final String BLOCKEXPLORER_ADDRESS_PATH = "address/";
-    public static final String BLOCKEXPLORER_TRANSACTION_PATH = "tx/";
-    public static final String BLOCKEXPLORER_BLOCK_PATH = "hash/";
+    public static final String BLOCKEXPLORER_BASE_URL_PROD = "https://chainz.cryptoid.info/bsd/";
+    public static final String BLOCKEXPLORER_ADDRESS_PATH = "address.dws?";
+    public static final String BLOCKEXPLORER_TRANSACTION_PATH = "tx.dws?";
+    public static final String BLOCKEXPLORER_BLOCK_PATH = "block.dws?";
     public static final String BLOCKEXPLORER_BASE_URL_TEST = "";
 
     public static final String DONATION_ADDRESS = "i6yaT9wUGDqCk7abqGyQi77p6n7ZFdkmiX";
