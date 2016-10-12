@@ -37,6 +37,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static com.hashengineering.crypto.X11.x11Digest;
+import static com.hashengineering.crypto.Xevan.XevanDigest;
 import static org.bitcoinj.core.Coin.FIFTY_COINS;
 import static org.bitcoinj.core.Sha256Hash.hashTwice;
 
@@ -101,7 +102,7 @@ public class Block extends Message {
     private transient boolean transactionBytesValid;
     private transient boolean masterNodeVotesBytesValid;
 
-    
+
     // Blocks can be encoded in a way that will use more bytes than is optimal (due to VarInts having multiple encodings)
     // MAX_BLOCK_SIZE must be compared to the optimal encoding, not the actual encoding, so when parsing, we keep track
     // of the size of the ideal encoding in addition to the actual message size (which Message needs)
@@ -128,8 +129,8 @@ public class Block extends Message {
      * Contruct a block object from the Bitcoin wire format.
      * @param params NetworkParameters object.
      * @param parseLazy Whether to perform a full parse immediately or delay until a read is requested.
-     * @param parseRetain Whether to retain the backing byte array for quick reserialization.  
-     * If true and the backing byte array is invalidated due to modification of a field then 
+     * @param parseRetain Whether to retain the backing byte array for quick reserialization.
+     * If true and the backing byte array is invalidated due to modification of a field then
      * the cached bytes may be repopulated and retained if the message is serialized again in the future.
      * @param length The length of message if known.  Usually this is provided when deserializing of the wire
      * as the length will be provided as part of the header.  If unknown then set to Message.UNKNOWN_LENGTH
@@ -200,7 +201,10 @@ public class Block extends Message {
         difficultyTarget = readUint32();
         nonce = readUint32();
 
-        hash = Sha256Hash.wrapReversed(x11Digest(payload, offset, cursor));
+        if (time < CoinDefinition.FORK_X17)
+            hash = Sha256Hash.wrapReversed(x11Digest(payload, offset, cursor));
+        else
+            hash = Sha256Hash.wrapReversed(XevanDigest(payload, offset, cursor));
 
 
         headerParsed = true;
@@ -254,7 +258,7 @@ public class Block extends Message {
         parseTransactions();
         length = cursor - offset;
     }
-    
+
     public int getOptimalEncodingMessageSize() {
         if (optimalEncodingMessageSize != 0)
             return optimalEncodingMessageSize;
@@ -564,7 +568,10 @@ public class Block extends Message {
         try {
             ByteArrayOutputStream bos = new UnsafeByteArrayOutputStream(HEADER_SIZE);
             writeHeader(bos);
-            return Sha256Hash.wrapReversed(x11Digest(bos.toByteArray()));
+            if (time < CoinDefinition.FORK_X17)
+                return Sha256Hash.wrapReversed(x11Digest(bos.toByteArray()));
+            else
+                return Sha256Hash.wrapReversed(XevanDigest(bos.toByteArray()));
         } catch (IOException e) {
             throw new RuntimeException(e); // Cannot happen.
         }
