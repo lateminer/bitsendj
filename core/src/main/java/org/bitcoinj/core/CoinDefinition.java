@@ -24,7 +24,7 @@ public class CoinDefinition {
         Millicoins,
     }
     public static final CoinPrecision coinPrecision = CoinPrecision.Coins;
-	
+
     public static final String UNSPENT_API_URL = "https://chainz.cryptoid.info/bsd/api.dws?q=unspent";
     public enum UnspentAPIType {
         BitEasy,
@@ -33,7 +33,7 @@ public class CoinDefinition {
         Cryptoid,
     };
     public static final UnspentAPIType UnspentAPI = UnspentAPIType.Cryptoid;
-	
+
     public static final String BLOCKEXPLORER_BASE_URL_PROD = "https://chainz.cryptoid.info/bsd/";
     public static final String BLOCKEXPLORER_ADDRESS_PATH = "address.dws?";
     public static final String BLOCKEXPLORER_TRANSACTION_PATH = "tx.dws?";
@@ -41,7 +41,7 @@ public class CoinDefinition {
     public static final String BLOCKEXPLORER_BASE_URL_TEST = "";
 
     public static final String DONATION_ADDRESS = "i6yaT9wUGDqCk7abqGyQi77p6n7ZFdkmiX";
-    
+
 
     enum CoinHash {
         SHA256,
@@ -95,7 +95,10 @@ public class CoinDefinition {
     public static final int dumpedPrivateKeyHeader = 128;
     // public static final long oldPacketMagic = 0xfbc0b6db;
     public static final long PacketMagic = 0xa3d5c2f9;
-		
+
+    // Forks
+    static public long FORK_X17 = 1477958400; // BitSend PoW Hardfork, Friday, 09-Sep-16 18:00:00 UTC
+
     static public long genesisBlockDifficultyTarget = (0x1e0ffff0L);
     static public long genesisBlockTime = 1402097469L;
     static public long genesisBlockNonce = (34784351);
