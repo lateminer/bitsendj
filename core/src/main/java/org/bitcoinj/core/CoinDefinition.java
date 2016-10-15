@@ -97,11 +97,11 @@ public class CoinDefinition {
     public static final long PacketMagic = 0xa3d5c2f9;
 
     // Forks
-    static public long FORK_X17 = 1477958400; // BitSend PoW Hardfork, Friday, 09-Sep-16 18:00:00 UTC
+    static public long FORK_X17 = 1477958400; // BitSend PoW Hardfork, 11/01/2016 @ 12:00am (UTC)
 
-    static public long genesisBlockDifficultyTarget = (0x1e0ffff0L);
+    static public long genesisBlockDifficultyTarget = 0x1e0ffff0L;
     static public long genesisBlockTime = 1402097469L;
-    static public long genesisBlockNonce = (34784351);
+    static public long genesisBlockNonce = 34784351;
     static public String genesisHash = "0000012e1b8843ac9ce8c18603658eaf8895f99d3f5e7e1b7b1686f35e3c087a";
     static public String genesisMerkleRoot = "c0c4f68994b78c31b6c7d7a8a895b5a085857adfbb73699bcfe5a247a357df57";
     static public int genesisBlockValue = 100;
@@ -112,32 +112,44 @@ public class CoinDefinition {
     // static public String genesisTxOutBytes = "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9";
 
     static public String[] dnsSeeds = new String[] {
-            "108.61.179.50",
-            "37.120.190.76",
             "85.214.68.75",
-            "68.197.13.94",
-            "46.188.4.74",
-            "107.170.2.241",
-            "45.58.51.22",
+            "91.153.109.149",
+            "155.94.146.68",
+            "79.172.215.68",
+            "45.32.184.19",
+            "93.158.216.144",
+            "109.248.33.69",
+            "212.24.111.56",
+            "212.101.16.116",
+            "2.25.181.53",
+            "37.2.133.145",
+            "198.44.190.37",
+            "70.27.93.7",
+            "64.231.105.21",
+            "5.231.235.53",
+            "137.135.57.119",
             "104.207.131.249",
-            "68.197.13.94",
-            "109.30.168.16",
-            "31.41.247.133",
-            "5.230.218.51",
-            "151.80.201.100",
-            "195.54.3.213",
-            "134.3.162.242",
+            "185.5.53.176",
+            "5.230.193.239",
+            "37.120.190.76",
+            "45.58.51.22",
+            "113.183.0.159",
     };
 
     public static int minBroadcastConnections = 0;
 
     public static final Coin GetBlockReward(int height)
     {
-        int COIN = 1;
-        Coin nSubsidy = Coin.valueOf(50, 0);
+        int nSubsidy;
+
         if (height == 1)
-            nSubsidy = Coin.valueOf(1306400, 0);
-        return nSubsidy;
+            nSubsidy = 1306400;
+        else if (height < (CoinDefinition.FORK_X17 - 1000))
+            nSubsidy = 50;
+        else
+            nSubsidy = 25; // halving after fork
+
+        return Coin.valueOf(nSubsidy, 0);
     }
 
     public static int subsidyDecreaseBlockCount = 210000;
