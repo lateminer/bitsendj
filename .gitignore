@@ -14,3 +14,4 @@ checkpoints.txt
 checkpoints-testnet.txt
 *.dat
 *.tmp
+.DS_Store

@@ -409,6 +409,8 @@ public class Peer extends PeerSocketHandler {
             log.error("{} {}: Received {}", this, getPeerVersionMessage().subVer, m);
         } else if(m instanceof DarkSendQueue) {
             //do nothing
+        } else if(m instanceof DarkSendElectionEntryPingMessage) {
+            // also do nothing :)
         } else {
             log.warn("{}: Received unhandled message: {}", this, m);
         }
