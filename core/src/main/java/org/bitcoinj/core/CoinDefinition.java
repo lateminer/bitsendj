@@ -56,9 +56,6 @@ public class CoinDefinition {
     public static final int TARGET_SPACING = (int)(5 * 60);
     public static final int INTERVAL = TARGET_TIMESPAN / TARGET_SPACING;
 
-    public static final int getInterval(int height, boolean testNet) {
-            return INTERVAL;
-    }
     public static final int getIntervalCheckpoints() {
             return INTERVAL;
 
@@ -79,11 +76,11 @@ public class CoinDefinition {
     public static final int MIN_PROTOCOL_VERSION = 70077;
 
     public static final int BLOCK_CURRENTVERSION = 3;
-    public static final int MAX_BLOCK_SIZE = 4000000;
+    public static final int MAX_BLOCK_SIZE = 10000000;
 
     public static final boolean supportsBloomFiltering = true;
 
-    public static final int Port    = 8886;
+    public static final int Port = 8886;
     public static final int TestPort = 8885;
 
     //
@@ -93,7 +90,6 @@ public class CoinDefinition {
     public static final int p2shHeader = 5;
     public static final boolean allowBitcoinPrivateKey = false;
     public static final int dumpedPrivateKeyHeader = 128;
-    // public static final long oldPacketMagic = 0xfbc0b6db;
     public static final long PacketMagic = 0xa3d5c2f9;
 
     // Forks
@@ -108,8 +104,6 @@ public class CoinDefinition {
 
     static public String genesisTxInBytes = "04ffff001d01043b6c696d65636f696e58206f667265636520616d706c69612067616d6120646520736572766963696f732079206d656a6f7261732070617261207469";
     static public String genesisTxOutBytes = "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9";
-    // static public String genesisTxOutBytes = "41040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9ac";
-    // static public String genesisTxOutBytes = "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9";
 
     static public String[] dnsSeeds = new String[] {
             "85.214.68.75",
@@ -144,7 +138,7 @@ public class CoinDefinition {
 
         if (height == 1)
             nSubsidy = 1306400;
-        else if (height < (CoinDefinition.FORK_X17 - 1000))
+        else if (height < 239000)
             nSubsidy = 50;
         else
             nSubsidy = 25; // halving after fork
@@ -180,6 +174,9 @@ public class CoinDefinition {
         checkpoints.put(  74910, Sha256Hash.wrap("000000002409374bcab8006f171b8c3eb4485220d94ae555b041ee24eb4d8434"));
         checkpoints.put(  84579, Sha256Hash.wrap("00000000372eebd8b26d135798ac04549dc32fdfb584710ed9edf2dcb1be6941"));
         checkpoints.put( 140602, Sha256Hash.wrap("0000000000b86fa0891a7241c71a0969439896b61abaf07e856eb0f49115b741"));
+        checkpoints.put( 172369, Sha256Hash.wrap("0000000014ffe9fc8370f0beb45955a8efa0f984a3fea1ffc2d8d7e07ea96daf"));
+        checkpoints.put( 199111, Sha256Hash.wrap("00000000028ce025396f4d27080737348f2155bab14f61b1b4ecfb1254dc239f"));
+        checkpoints.put( 225225, Sha256Hash.wrap("0000000001afd387860c222d77069aece4a86ce5d32b78d6889ab31aeca5fac5"));
     }
 
     //
