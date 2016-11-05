@@ -6,13 +6,17 @@ import fr.cryptohash.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+
+import static com.google.common.base.Preconditions.checkArgument;
+
 /**
  * Created by Hash Engineering on 4/24/14 for the X11 algorithm
  * updated by madzebra on 10/11/2016 for the Xevan algorithm
  */
 public class Xevan {
 
-    private static final Logger log = LoggerFactory.getLogger(X11.class);
+    private static final Logger log = LoggerFactory.getLogger(Xevan.class);
 
     public static byte[] XevanDigest(byte[] input, int offset, int length)
     {
@@ -77,7 +81,7 @@ public class Xevan {
         hash[13] = new Sha512Hash(shabal.digest(hash[12].getBytes()));
         hash[14] = new Sha512Hash(whirlpool.digest(hash[13].getBytes()));
         hash[15] = new Sha512Hash(sha512.digest(hash[14].getBytes()));
-        hash[16] = new Sha512Hash(haval.digest(hash[15].getBytes()));
+        hash[16] = new Sha512Hash(expand(haval.digest(hash[15].getBytes())));
 
         //  Part 2
         hash[17] = new Sha512Hash(blake.digest(hash[16].getBytes()));
@@ -96,8 +100,24 @@ public class Xevan {
         hash[30] = new Sha512Hash(shabal.digest(hash[29].getBytes()));
         hash[31] = new Sha512Hash(whirlpool.digest(hash[30].getBytes()));
         hash[32] = new Sha512Hash(sha512.digest(hash[31].getBytes()));
-        hash[33] = new Sha512Hash(haval.digest(hash[32].getBytes()));
+        hash[33] = new Sha512Hash(expand(haval.digest(hash[32].getBytes())));
 
         return hash[33].trim256().getBytes();
+    }
+
+    /**
+     * Expands array 32 bytes long to array 64 bytes long.
+     */
+    private static byte [] expand(byte [] input) {
+        checkArgument(input.length == 32);
+
+        byte [] result = new byte[64];
+        byte zero = 0;
+        Arrays.fill(result, zero);
+
+        for (int i = 0 ; i < 32; i++)
+            result[i] = input[i];
+
+        return result;
     }
 }
