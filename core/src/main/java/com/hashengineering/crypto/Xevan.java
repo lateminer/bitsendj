@@ -1,13 +1,11 @@
 package com.hashengineering.crypto;
 
 import org.bitcoinj.core.Sha256Hash;
-import org.bitcoinj.core.Utils;
 
 import fr.cryptohash.*;
 import java.util.Arrays;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.hashengineering.crypto.X11.x11Digest;
 
 /**
  * Created by Hash Engineering on 4/24/14 for the X11 algorithm
