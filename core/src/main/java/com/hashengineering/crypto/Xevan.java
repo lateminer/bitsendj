@@ -3,9 +3,6 @@ package com.hashengineering.crypto;
 import org.bitcoinj.core.Sha256Hash;
 
 import fr.cryptohash.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Arrays;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -15,9 +12,6 @@ import static com.google.common.base.Preconditions.checkArgument;
  * updated by madzebra on 10/11/2016 for the Xevan algorithm
  */
 public class Xevan {
-
-    private static final Logger log = LoggerFactory.getLogger(Xevan.class);
-
     public static byte[] XevanDigest(byte[] input, int offset, int length)
     {
         byte [] buf = new byte[length];
@@ -29,15 +23,10 @@ public class Xevan {
     }
 
     public static byte[] XevanDigest(byte[] input) {
-        long start = System.currentTimeMillis();
         try {
             return XEVAN(input);
         } catch (Exception e) {
             return null;
-        }
-        finally {
-            long time = System.currentTimeMillis()-start;
-            log.info("XEVAN Hash time: {} ms per block", time);
         }
     }
 
@@ -66,41 +55,41 @@ public class Xevan {
 
         // Part 1
         hash[0] = new Sha512Hash(blake.digest(header));
-        hash[1] = new Sha512Hash(bmw.digest(hash[0].getBytes()));
-        hash[2] = new Sha512Hash(groestl.digest(hash[1].getBytes()));
-        hash[3] = new Sha512Hash(skein.digest(hash[2].getBytes()));
-        hash[4] = new Sha512Hash(jh.digest(hash[3].getBytes()));
-        hash[5] = new Sha512Hash(keccak.digest(hash[4].getBytes()));
-        hash[6] = new Sha512Hash(luffa.digest(hash[5].getBytes()));
-        hash[7] = new Sha512Hash(cubehash.digest(hash[6].getBytes()));
-        hash[8] = new Sha512Hash(shavite.digest(hash[7].getBytes()));
-        hash[9] = new Sha512Hash(simd.digest(hash[8].getBytes()));
-        hash[10] = new Sha512Hash(echo.digest(hash[9].getBytes()));
-        hash[11] = new Sha512Hash(hamsi.digest(hash[10].getBytes()));
-        hash[12] = new Sha512Hash(figue.digest(hash[11].getBytes()));
-        hash[13] = new Sha512Hash(shabal.digest(hash[12].getBytes()));
-        hash[14] = new Sha512Hash(whirlpool.digest(hash[13].getBytes()));
-        hash[15] = new Sha512Hash(sha512.digest(hash[14].getBytes()));
-        hash[16] = new Sha512Hash(expand(haval.digest(hash[15].getBytes())));
+        hash[1] = new Sha512Hash(bmw.digest(expand128(hash, 0)));
+        hash[2] = new Sha512Hash(groestl.digest(expand128(hash, 1)));
+        hash[3] = new Sha512Hash(skein.digest(expand128(hash, 2)));
+        hash[4] = new Sha512Hash(jh.digest(expand128(hash, 3)));
+        hash[5] = new Sha512Hash(keccak.digest(expand128(hash, 4)));
+        hash[6] = new Sha512Hash(luffa.digest(expand128(hash, 5)));
+        hash[7] = new Sha512Hash(cubehash.digest(expand128(hash, 6)));
+        hash[8] = new Sha512Hash(shavite.digest(expand128(hash, 7)));
+        hash[9] = new Sha512Hash(simd.digest(expand128(hash, 8)));
+        hash[10] = new Sha512Hash(echo.digest(expand128(hash, 9)));
+        hash[11] = new Sha512Hash(hamsi.digest(expand128(hash, 10)));
+        hash[12] = new Sha512Hash(figue.digest(expand128(hash, 11)));
+        hash[13] = new Sha512Hash(shabal.digest(expand128(hash, 12)));
+        hash[14] = new Sha512Hash(whirlpool.digest(expand128(hash, 13)));
+        hash[15] = new Sha512Hash(sha512.digest(expand128(hash, 14)));
+        hash[16] = new Sha512Hash(expand64(haval.digest(expand128(hash, 15))));
 
         //  Part 2
-        hash[17] = new Sha512Hash(blake.digest(hash[16].getBytes()));
-        hash[18] = new Sha512Hash(bmw.digest(hash[17].getBytes()));
-        hash[19] = new Sha512Hash(groestl.digest(hash[18].getBytes()));
-        hash[20] = new Sha512Hash(skein.digest(hash[19].getBytes()));
-        hash[21] = new Sha512Hash(jh.digest(hash[20].getBytes()));
-        hash[22] = new Sha512Hash(keccak.digest(hash[21].getBytes()));
-        hash[23] = new Sha512Hash(luffa.digest(hash[22].getBytes()));
-        hash[24] = new Sha512Hash(cubehash.digest(hash[23].getBytes()));
-        hash[25] = new Sha512Hash(shavite.digest(hash[24].getBytes()));
-        hash[26] = new Sha512Hash(simd.digest(hash[25].getBytes()));
-        hash[27] = new Sha512Hash(echo.digest(hash[26].getBytes()));
-        hash[28] = new Sha512Hash(hamsi.digest(hash[27].getBytes()));
-        hash[29] = new Sha512Hash(figue.digest(hash[28].getBytes()));
-        hash[30] = new Sha512Hash(shabal.digest(hash[29].getBytes()));
-        hash[31] = new Sha512Hash(whirlpool.digest(hash[30].getBytes()));
-        hash[32] = new Sha512Hash(sha512.digest(hash[31].getBytes()));
-        hash[33] = new Sha512Hash(expand(haval.digest(hash[32].getBytes())));
+        hash[17] = new Sha512Hash(blake.digest(expand128(hash, 16)));
+        hash[18] = new Sha512Hash(bmw.digest(expand128(hash, 17)));
+        hash[19] = new Sha512Hash(groestl.digest(expand128(hash, 18)));
+        hash[20] = new Sha512Hash(skein.digest(expand128(hash, 19)));
+        hash[21] = new Sha512Hash(jh.digest(expand128(hash, 20)));
+        hash[22] = new Sha512Hash(keccak.digest(expand128(hash, 21)));
+        hash[23] = new Sha512Hash(luffa.digest(expand128(hash, 22)));
+        hash[24] = new Sha512Hash(cubehash.digest(expand128(hash, 23)));
+        hash[25] = new Sha512Hash(shavite.digest(expand128(hash, 24)));
+        hash[26] = new Sha512Hash(simd.digest(expand128(hash, 25)));
+        hash[27] = new Sha512Hash(echo.digest(expand128(hash, 26)));
+        hash[28] = new Sha512Hash(hamsi.digest(expand128(hash, 27)));
+        hash[29] = new Sha512Hash(figue.digest(expand128(hash, 28)));
+        hash[30] = new Sha512Hash(shabal.digest(expand128(hash, 29)));
+        hash[31] = new Sha512Hash(whirlpool.digest(expand128(hash, 30)));
+        hash[32] = new Sha512Hash(sha512.digest(expand128(hash, 31)));
+        hash[33] = new Sha512Hash(expand64(haval.digest(expand128(hash, 32))));
 
         return hash[33].trim256().getBytes();
     }
@@ -108,14 +97,23 @@ public class Xevan {
     /**
      * Expands array 32 bytes long to array 64 bytes long.
      */
-    private static byte [] expand(byte [] input) {
-        checkArgument(input.length == 32);
+    private static byte [] expand64(byte [] input) {
+        return expand(input, 32, 64);
+    }
 
-        byte [] result = new byte[64];
-        byte zero = 0;
-        Arrays.fill(result, zero);
+    /**
+     * Expands array 64 bytes long to array 128 bytes long.
+     */
+    private static byte [] expand128(Sha512Hash [] hashes, int pos) {
+        checkArgument(pos >= 0 && pos < 33);
+        return expand(hashes[pos].getBytes(), 64, 128);
+    }
 
-        for (int i = 0 ; i < 32; i++)
+    private static byte [] expand(byte [] input, int original_length, int new_length) {
+        checkArgument(input.length == original_length);
+
+        byte [] result = new byte[new_length];
+        for (int i = 0; i < original_length; i++)
             result[i] = input[i];
 
         return result;
