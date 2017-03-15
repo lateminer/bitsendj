@@ -174,9 +174,9 @@ public class CoinDefinition {
         checkpoints.put(  74910, Sha256Hash.wrap("000000002409374bcab8006f171b8c3eb4485220d94ae555b041ee24eb4d8434"));
         checkpoints.put(  84579, Sha256Hash.wrap("00000000372eebd8b26d135798ac04549dc32fdfb584710ed9edf2dcb1be6941"));
         checkpoints.put( 140602, Sha256Hash.wrap("0000000000b86fa0891a7241c71a0969439896b61abaf07e856eb0f49115b741"));
-        checkpoints.put( 172369, Sha256Hash.wrap("0000000014ffe9fc8370f0beb45955a8efa0f984a3fea1ffc2d8d7e07ea96daf"));
-        checkpoints.put( 199111, Sha256Hash.wrap("00000000028ce025396f4d27080737348f2155bab14f61b1b4ecfb1254dc239f"));
-        checkpoints.put( 225225, Sha256Hash.wrap("0000000001afd387860c222d77069aece4a86ce5d32b78d6889ab31aeca5fac5"));
+        checkpoints.put( 186158, Sha256Hash.wrap("0000000002d477cc1fea0438f7d477c0c993ae3762bc60efdbb8873275b385c7"));
+        checkpoints.put( 212573, Sha256Hash.wrap("0000000da60270f8183780773064d689762b6ad6749296e9fc274c3dcecfc6f6"));
+        checkpoints.put( 279122, Sha256Hash.wrap("00000002e14806c9d2aa7afeeb43df69b90ab8c6083b33b34fd9d62c57dac559"));
     }
 
     //
