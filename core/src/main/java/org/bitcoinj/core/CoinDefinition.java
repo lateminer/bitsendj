@@ -123,10 +123,12 @@ public class CoinDefinition {
 
         if (height == 1)
             nSubsidy = 1306400;
-        else if (height < 239000)
+        else if (height < 239000) // main.cpp, (FORKX17_Main_Net-1000)
             nSubsidy = 50;
+        else if (height < 7869744) // main.cpp, (FORKX17_Main_Net*33)-50256)
+            nSubsidy = 25;
         else
-            nSubsidy = 25; // halving after fork
+            nSubsidy = 1; // should be 0.1 !!!   
 
         return Coin.valueOf(nSubsidy, 0);
     }
