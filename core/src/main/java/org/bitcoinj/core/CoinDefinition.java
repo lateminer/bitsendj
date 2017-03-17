@@ -72,8 +72,8 @@ public class CoinDefinition {
 
     public static final long INSTANTX_FEE = 1000000;
 
-    public static final int PROTOCOL_VERSION = 70081;
-    public static final int MIN_PROTOCOL_VERSION = 70081;
+    public static final int PROTOCOL_VERSION = 70082;
+    public static final int MIN_PROTOCOL_VERSION = 70082;
 
     public static final int BLOCK_CURRENTVERSION = 3;
     public static final int MAX_BLOCK_SIZE = 10000000;
@@ -106,28 +106,13 @@ public class CoinDefinition {
     static public String genesisTxOutBytes = "040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9";
 
     static public String[] dnsSeeds = new String[] {
-            "85.214.68.75",
-            "91.153.109.149",
-            "155.94.146.68",
-            "79.172.215.68",
-            "45.32.184.19",
-            "93.158.216.144",
-            "109.248.33.69",
-            "212.24.111.56",
-            "212.101.16.116",
-            "2.25.181.53",
-            "37.2.133.145",
-            "198.44.190.37",
-            "70.27.93.7",
-            "64.231.105.21",
-            "5.231.235.53",
-            "137.135.57.119",
-            "104.207.131.249",
-            "185.5.53.176",
-            "5.230.193.239",
+            "188.68.52.172",
+            "37.120.186.85",
             "37.120.190.76",
-            "45.58.51.22",
-            "113.183.0.159",
+            "213.136.80.93",
+            "213.136.86.202",
+            "213.136.86.205",
+            "213.136.86.207",
     };
 
     public static int minBroadcastConnections = 0;
@@ -138,10 +123,12 @@ public class CoinDefinition {
 
         if (height == 1)
             nSubsidy = 1306400;
-        else if (height < 239000)
+        else if (height < 239000) // main.cpp, (FORKX17_Main_Net-1000)
             nSubsidy = 50;
+        else if (height < 7869744) // main.cpp, (FORKX17_Main_Net*33)-50256)
+            nSubsidy = 25;
         else
-            nSubsidy = 25; // halving after fork
+            nSubsidy = 1; // should be 0.1 !!!   
 
         return Coin.valueOf(nSubsidy, 0);
     }
@@ -174,9 +161,9 @@ public class CoinDefinition {
         checkpoints.put(  74910, Sha256Hash.wrap("000000002409374bcab8006f171b8c3eb4485220d94ae555b041ee24eb4d8434"));
         checkpoints.put(  84579, Sha256Hash.wrap("00000000372eebd8b26d135798ac04549dc32fdfb584710ed9edf2dcb1be6941"));
         checkpoints.put( 140602, Sha256Hash.wrap("0000000000b86fa0891a7241c71a0969439896b61abaf07e856eb0f49115b741"));
-        checkpoints.put( 172369, Sha256Hash.wrap("0000000014ffe9fc8370f0beb45955a8efa0f984a3fea1ffc2d8d7e07ea96daf"));
-        checkpoints.put( 199111, Sha256Hash.wrap("00000000028ce025396f4d27080737348f2155bab14f61b1b4ecfb1254dc239f"));
-        checkpoints.put( 225225, Sha256Hash.wrap("0000000001afd387860c222d77069aece4a86ce5d32b78d6889ab31aeca5fac5"));
+        checkpoints.put( 186158, Sha256Hash.wrap("0000000002d477cc1fea0438f7d477c0c993ae3762bc60efdbb8873275b385c7"));
+        checkpoints.put( 212573, Sha256Hash.wrap("0000000da60270f8183780773064d689762b6ad6749296e9fc274c3dcecfc6f6"));
+        checkpoints.put( 279122, Sha256Hash.wrap("00000002e14806c9d2aa7afeeb43df69b90ab8c6083b33b34fd9d62c57dac559"));
     }
 
     //
