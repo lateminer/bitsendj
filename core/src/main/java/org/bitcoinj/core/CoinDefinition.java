@@ -12,6 +12,7 @@ import java.util.Map;
 public class CoinDefinition {
 
     public static final String coinName = "BitSend";
+    public static final String coinNameV2 = "Bitsend";
     public static final String coinTicker = "BSD";
     public static final String coinURIScheme = "bitsend";
     public static final String cryptsyMarketId = "309";
