@@ -73,8 +73,8 @@ public class CoinDefinition {
 
     public static final long INSTANTX_FEE = 1000000;
 
-    public static final int PROTOCOL_VERSION = 70082;
-    public static final int MIN_PROTOCOL_VERSION = 70082;
+    public static final int PROTOCOL_VERSION = 70084;
+    public static final int MIN_PROTOCOL_VERSION = 70084;
 
     public static final int BLOCK_CURRENTVERSION = 3;
     public static final int MAX_BLOCK_SIZE = 10000000;
